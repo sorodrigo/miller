@@ -1,0 +1,20 @@
+$column-width: 100px;
+$boder-radius: 2px;
+.miller {
+
+  > .column {
+    min-width: $column-width;
+
+    &:first-child {
+      border-top-left-radius: $boder-radius;
+      border-bottom-left-radius: $boder-radius;
+    }
+    &:last-child {
+      border-top-right-radius: $boder-radius;
+      border-bottom-right-radius: $boder-radius;
+    }
+    &:only-child {
+      border-radius: $boder-radius;
+    }
+  }
+}

@@ -22,6 +22,8 @@ module.exports = {
     'comma-dangle': ['error', 'only-multiline'],
     'no-unused-expressions': ['error', { 'allowShortCircuit': true }],
     'no-param-reassign': ['error', { "props": false }],
+    'no-plusplus':  ['error', { 'allowForLoopAfterthoughts': true }],
+    'radix': ['error', 'as-needed'],
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
     'no-console':  process.env.NODE_ENV === 'production' ? 2 : 0
   }
