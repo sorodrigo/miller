@@ -10,49 +10,49 @@ var wordwrap = require('wordwrap');
 
 var colors = require('colors');
 
-let sassExtract = new ExtractTextPlugin('css/app.css');
+let sassExtract = new ExtractTextPlugin('styles/app.css');
 
 module.exports = {
-    entry: {
-        app: ['./src/js/app.js']
-    },
-    output: {
-        path: require('path').resolve('build'),
-        publicPath: '/',
-        filename: 'js/app.js'
-    },
-    module: {
-      preLoaders: [
-        {
-          test: /\.js$/,
-          loader: 'eslint',
-          exclude: /node_modules/
-        }
-      ],
-        loaders: [
-            {
-              test: /\.scss$/,
-              loader: sassExtract.extract("css!sass")
-            },
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                loader: 'babel',
-                query: { presets: ['es2015'] }
-            }
-        ]
-    },
-    eslint: {
-      formatter: require('eslint-friendly-formatter')
-    },
-    plugins: [
-      sassExtract,
-      new CopyWebpackPlugin([
-        {
-          context: 'src',
-          from: '**/*.html',
-          to: '.'
-        }
-      ])
+  entry: {
+    app: ['./src/app.js']
+  },
+  output: {
+    path: require('path').resolve('build'),
+    publicPath: '/',
+    filename: 'app.js'
+  },
+  module: {
+    preLoaders: [
+      {
+        test: /\.js$/,
+        loader: 'eslint',
+        exclude: /node_modules/
+      }
     ],
+    loaders: [
+      {
+        test: /\.scss$/,
+        loader: sassExtract.extract("css!sass")
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel',
+        query: { presets: ['es2015'] }
+      }
+    ]
+  },
+  eslint: {
+    formatter: require('eslint-friendly-formatter')
+  },
+  plugins: [
+    sassExtract,
+    new CopyWebpackPlugin([
+      {
+        context: 'src',
+        from: '**/*.html',
+        to: '.'
+      }
+    ])
+  ],
 };
