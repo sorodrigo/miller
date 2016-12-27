@@ -17,7 +17,7 @@ module.exports = {
     app: ['./src/app.js']
   },
   output: {
-    path: require('path').resolve('build'),
+    path: path.resolve(__dirname, 'build'),
     publicPath: '/',
     filename: 'app.js'
   },
@@ -36,9 +36,13 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        exclude: /node_modules/,
         loader: 'babel',
-        query: { presets: ['es2015'] }
+        include: path.resolve(__dirname, '../'),
+        exclude: /node_modules/
+      },
+      {
+        test: /\.json$/,
+        loader: 'json'
       }
     ]
   },
