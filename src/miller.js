@@ -20,6 +20,7 @@ class Miller {
     this.el = document.querySelector(selector);
     this.options = Object.assign({}, defaults, options);
     this.options.columnSize = this.options.columnSize || this.getColumnSize();
+    this.options.propMode = !Miller.isLeaf(this.options.data);
     this.init();
   }
 
@@ -86,7 +87,7 @@ class Miller {
     const list = Miller.isLeaf(rows) ? Object.entries(rows) : rows;
     list.forEach((row) => {
       if (Miller.isLeaf(row)) {
-        if (typeof row === 'object') {
+        if (typeof row === 'object' && this.options.propMode) {
           this.addRow(row[this.options.props.parent], row,
             `${this.options.rowClass} ${this.options.parentClass}`, column);
         } else {
@@ -128,7 +129,7 @@ class Miller {
         while (this.options.columns.length < this.options.minColumns) {
           this.options.columns.push(this.addColumn());
         }
-      } else if (row[this.options.props.children]) {
+      } else if (row[this.options.props.children] && this.options.propMode) {
         this.populateColumn(row[this.options.props.children], columnID);
       } else {
         this.populateColumn(row, columnID);

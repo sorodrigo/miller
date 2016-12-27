@@ -4,12 +4,15 @@
   "description": "Webpack ES6 SASS",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server",
-    "build": "webpack",
+    "start": "./node_modules/.bin/webpack-dev-server --progress --colors",
+    "build": "./node_modules/.bin/webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": "https://github.com/sorodrigo/miller",
-  "author": "Who Am I?",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sorodrigo/miller"
+  },
+  "author": "https://github.com/sorodrigo",
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
@@ -35,6 +38,7 @@
     "postcss-loader": "^1.2.1",
     "postcss-nested": "^1.0.0",
     "sass-loader": "^4.1.1",
-    "webpack": "^1.14.0"
+    "webpack": "^1.14.0",
+    "webpack-dev-server": "^1.16.2"
   }
 }
