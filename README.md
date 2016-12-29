@@ -1,6 +1,6 @@
 # miller
 
-> Lightweight, jQuery free, dependecy free implementation of finder's **miller columns** built on top of ES6
+> Lightweight, jQuery free, dependency free implementation of finder's **miller columns** built on top of ES6
 
 ## Installation
 
