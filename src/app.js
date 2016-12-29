@@ -3,6 +3,11 @@ import Miller from './miller';
 
 document.onreadystatechange = () => {
   if (document.readyState === 'complete') {
+    document.querySelector('#miller').addEventListener('Miller:change', (e) => {
+      const data = document.querySelector('#selected-data');
+      data.innerText = JSON.stringify(e.detail);
+      data.style.display = 'flex';
+    });
     /* eslint-disable no-new */
     const set = new Set([4, 6, 9999999]);
     new Miller('#miller', {
