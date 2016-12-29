@@ -108,6 +108,7 @@ class Miller {
     const row = this.options.rows.get(option.id);
     const columnID = parseInt(select.id.substr(-1));
     this.updateColumns(row, columnID);
+    this.emit('Miller:change', { detail: row });
   }
 
   populateColumn(rows, columnID) {
@@ -137,6 +138,11 @@ class Miller {
     } else {
       this.populateColumn(row, columnID);
     }
+  }
+
+  emit(name, data) {
+    const event = new CustomEvent(name, data);
+    this.el.dispatchEvent(event);
   }
 }
 
