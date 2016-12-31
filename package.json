@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "./node_modules/.bin/webpack-dev-server --progress --colors",
-    "build": "./node_modules/.bin/webpack",
+    "build": "rm -rf dist/ && NODE_ENV=production ./node_modules/.bin/webpack --config ./webpack.config.js --progress --profile --colors",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -39,6 +39,8 @@
     "postcss-nested": "^1.0.0",
     "sass-loader": "^4.1.1",
     "webpack": "^1.14.0",
-    "webpack-dev-server": "^1.16.2"
+    "webpack-dev-server": "^1.16.2",
+    "webpack-hot-middleware": "^2.14.0",
+    "webpack-uglify-js-plugin": "^1.1.9"
   }
 }
