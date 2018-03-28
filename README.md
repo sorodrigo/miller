@@ -1,5 +1,7 @@
 # miller
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/sorodrigo/miller.svg)](https://greenkeeper.io/)
+
 > Lightweight, jQuery free, dependency free implementation of finder's **miller columns** built on top of ES6
 
 ## Installation
