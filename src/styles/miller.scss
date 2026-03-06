@@ -1,20 +1,220 @@
-$column-width: 100px;
-$boder-radius: 2px;
+// --- Reset & base ---
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background: #f0f1f3;
+  color: #1d1d1f;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: 720px;
+  margin: 80px auto;
+  padding: 0 24px;
+}
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  font-size: 0.8rem;
+  color: #86868b;
+  margin-bottom: 20px;
+
+  kbd {
+    display: inline-block;
+    font-family: inherit;
+    font-size: 0.7rem;
+    background: #fff;
+    border: 1px solid #d2d2d7;
+    border-radius: 3px;
+    padding: 1px 5px;
+    margin: 0 1px;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
+  }
+}
+
+// --- Screen reader only ---
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// --- Miller columns ---
+
+$radius: 10px;
+$border: #d2d2d7;
+$bg: #fff;
+$hover: #f5f5f7;
+$selected: #0071e3;
+$selected-text: #fff;
+$column-min: 180px;
+$row-height: 36px;
+
 .miller {
+  border: 1px solid $border;
+  border-radius: $radius;
+  background: $bg;
+  overflow: hidden;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.06),
+    0 4px 12px rgba(0, 0, 0, 0.04);
+}
 
-  > .column {
-    min-width: $column-width;
+.miller__toolbar {
+  display: flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 12px;
+  border-bottom: 1px solid $border;
+  background: #fafafa;
+}
 
-    &:first-child {
-      border-top-left-radius: $boder-radius;
-      border-bottom-left-radius: $boder-radius;
+.miller__breadcrumbs {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 2px;
+  overflow: hidden;
+}
+
+.miller__crumb {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+
+  &::after {
+    content: '\203A';
+    color: #b0b0b5;
+    margin: 0 4px;
+    font-size: 0.9rem;
+  }
+
+  &:last-child::after {
+    display: none;
+  }
+
+  &:last-child .miller__crumb-btn {
+    color: $selected;
+    font-weight: 500;
+  }
+}
+
+.miller__crumb-btn {
+  background: none;
+  border: none;
+  font: inherit;
+  font-size: 0.8rem;
+  color: #6e6e73;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 4px;
+
+  &:hover {
+    background: $hover;
+    color: #1d1d1f;
+  }
+
+  &:focus-visible {
+    outline: 2px solid rgba($selected, 0.4);
+    outline-offset: -1px;
+  }
+}
+
+.miller__body {
+  display: flex;
+}
+
+.miller__column {
+  list-style: none;
+  flex: 1 1 0;
+  min-width: 0;
+  overflow-y: auto;
+  border-right: 1px solid $border;
+  padding: 4px 0;
+  outline: none;
+
+  &:last-child {
+    border-right: none;
+  }
+
+
+  &:empty::after {
+    content: 'No selection';
+    display: block;
+    padding: 12px 16px;
+    color: #b0b0b5;
+    font-size: 0.825rem;
+    font-style: italic;
+  }
+}
+
+.miller__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: $row-height;
+  padding: 0 12px 0 16px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 6px;
+  margin: 1px 6px;
+  outline: none;
+  transition: background-color 0.1s;
+
+  &:hover {
+    background: $hover;
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 2px rgba($selected, 0.4);
+  }
+
+  &--selected {
+    background: $selected;
+    color: $selected-text;
+
+    &:hover {
+      background: darken($selected, 5%);
     }
-    &:last-child {
-      border-top-right-radius: $boder-radius;
-      border-bottom-right-radius: $boder-radius;
-    }
-    &:only-child {
-      border-radius: $boder-radius;
+
+    .miller__row-chevron {
+      color: rgba($selected-text, 0.7);
     }
   }
+}
+
+.miller__row-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.miller__row-chevron {
+  flex-shrink: 0;
+  margin-left: 8px;
+  font-size: 1.2rem;
+  line-height: 1;
+  color: #b0b0b5;
 }
